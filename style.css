@@ -1,0 +1,127 @@
+<style>html,
+body {
+  margin: 0;
+  padding: 0;
+  border-box: box-sizing;
+  font-size: 16px;
+  font-family: sans-serif;
+  width: 100vw;
+}
+
+form {
+  padding-inline: 10px;
+  max-width: 1000px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.container {
+  margin-inline: auto;
+}
+
+#buttonSearchCPF {
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #6F6F6F;
+  transition: .4s;
+}
+
+#buttonSearchCPF:hover {
+  transform: scale(1.2);
+  color: #000;
+}
+
+.inputStyle {
+  outline: none;
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #CDCDCD;
+  color: #6F6F6F;
+  width: 90%;
+}
+
+label {
+  display: block;
+  color: #6F6F6F;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"] {
+  font-size: 1rem;
+  padding-left: 10px;
+}
+
+
+
+.c-loader {
+  animation: is-rotating 1s infinite;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: 6px solid #ced4da;
+  border-top-color: #0b3e7b;
+
+}
+
+@keyframes is-rotating {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+
+
+
+
+
+/* modalCorfirmPerson */
+.modalCorfirmPerson {
+  display: none;
+  width: 356px;
+  height: auto;
+  margin-inline: auto;
+  border: 1px solid #6F6F6F;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem;
+  border-radius: 4px;
+}
+
+#confirmPerson {
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: #007849;
+  border-radius: 4px;
+  padding: 12px 14px;
+  color: #fff;
+  margin-right: 2rem;
+  border: none;
+  transition: .3s;
+}
+
+#confirmPerson:hover {
+  background: #024f31;
+}
+
+#cancelPerson {
+  cursor: pointer;
+  text-transform: uppercase;
+  background-color: #6F6F6F;
+  border-radius: 4px;
+  padding: 12px 14px;
+  color: #fff;
+  border: none;
+  transition: .3s;
+}
+
+#cancelPerson:hover {
+  background-color: #545353;
+}
+
+</style>

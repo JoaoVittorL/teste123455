@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <?!= HtmlService.createHtmlOutputFromFile('style').getContent(); ?>
+  </head>
+
+  <body>
+    <div class="container">
+      <form id="form-busca" onsubmit="buscarDados(); return false;">
+        <div style="width: 100%">
+          <label for="cpf">CPF:</label>
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            "
+          >
+            <input
+              style="width: 90%"
+              class="inputStyle"
+              pattern="\d{11}"
+              type="text"
+              max="11"
+              id="cpf"
+              name="cpf"
+              placeholder="Somente números"
+            />
+            <button id="buttonSearchCPF" type="submit">
+              <i class="fa fa-search"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+
+      <div class="modalCorfirmPerson">
+        <div style="display: flex; align-items: center; margin-bottom: 20px">
+          <span style="display: block; margin-right: 5px">NOME:</span>
+          <span style="display: block" id="nome"></span>
+        </div>
+        <div style="display: flex; align-items: center; margin-bottom: 20px">
+          <span style="display: block; margin-right: 5px">FUNÇÃO:</span>
+          <span style="display: block" id="funcao"></span>
+        </div>
+        <div
+          style="display: flex; align-items: center; justify-content: center"
+        >
+          <button id="confirmPerson">Confirmar</button>
+          <button id="cancelPerson">Cancelar</button>
+        </div>
+      </div>
+
+      <div id="loading" style="display: none">
+        <div
+          style="
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+          "
+        >
+          <div style="margin-inline: auto" class="c-loader"></div>
+          <p style="text-align: center">Procurando colaborador...</p>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const loading = document.querySelector("#loading");
+    function buscarDados() {
+      var cpf = document.getElementById("cpf").value;
+      if (cpf !== "") {
+        loading.style.display = "flex";
+        google.script.run
+          .withSuccessHandler(exibirDados)
+          .buscarDadosUsuario(cpf);
+      } else {
+        alert("inputVazio");
+      }
+    }
+
+    function exibirDados(dados) {
+      loading.style.display = "none";
+
+      if (dados !== "invalido") {
+        var modal = document.querySelector(".modalCorfirmPerson");
+        modal.style.cssText = "display:flex; flex-direction:column;";
+        var divResultado1 = document.getElementById("nome");
+        var divResultado2 = document.getElementById("funcao");
+        divResultado1.innerHTML = dados[0];
+        divResultado2.innerHTML = dados[1];
+      } else {
+        alert("digite novamente");
+      }
+
+      console.log(dados);
+    }
+  </script>
+</html>
